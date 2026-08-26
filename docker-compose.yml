@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: zerobox
+      POSTGRES_PASSWORD: zerobox
+      POSTGRES_DB: zerobox
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data", "./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro"]
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: zerobox
+      MINIO_ROOT_PASSWORD: zeroboxsecret
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["miniodata:/data"]
+  server:
+    build: .
+    depends_on: [postgres, minio]
+    environment:
+      DB_URL: postgres://zerobox:zerobox@postgres:5432/zerobox
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: zerobox
+      MINIO_SECRET_KEY: zeroboxsecret
+      JWT_SECRET: dev-only-change-me
+      CORS_ORIGIN: http://localhost:5173,http://127.0.0.1:5173
+      ADMIN_CONSOLE_PASSWORD: ${ADMIN_CONSOLE_PASSWORD:-admin}
+      PORT: 8080
+    ports: ["8080:8080"]
+volumes:
+  pgdata:
+  miniodata:
