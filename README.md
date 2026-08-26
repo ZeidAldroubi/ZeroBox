@@ -7,6 +7,9 @@ Zerobox is a zero-knowledge file storage web application. It provides a Dropbox-
 Before an upload is sent to the server, the browser derives an encryption key from the user's password and encrypts both the file contents and filename with AES-256-GCM. The Go backend stores only encrypted bytes and metadata. PostgreSQL stores account and file metadata, while MinIO stores the encrypted blobs. The server never receives the user's file-encryption key or plaintext file contents.
 
 This project also includes a Security Console that demonstrates the architecture and runs live security checks against the actual database and object storage.
+<img width="1890" height="856" alt="Screenshot 2026-08-25 232358" src="https://github.com/user-attachments/assets/2f32a2d9-f2f5-444e-85d4-a899140a5f90" />
+<img width="1892" height="857" alt="Screenshot 2026-08-25 232420" src="https://github.com/user-attachments/assets/54dcd010-85b2-4051-9da7-2b227160998d" />
+<img width="1880" height="852" alt="Screenshot 2026-08-25 232511" src="https://github.com/user-attachments/assets/142bb8d8-2667-4f8b-8849-8435645a40b7" />
 
 ## Contents
 
