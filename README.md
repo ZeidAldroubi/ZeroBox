@@ -385,7 +385,3 @@ The server never uses a user-provided filename as a filesystem or object-storage
 - There is no file sharing, version history, delta sync, or mobile application.
 - The Security Console password is intentionally public in the local demo default. It must be overridden for any shared or production deployment.
 - The included legacy CLI predates the browser console and uses its own local configuration format. The browser app is the primary product experience.
-
-## License
-
-No license has been selected for this repository yet. Add a license before distributing the project publicly.
